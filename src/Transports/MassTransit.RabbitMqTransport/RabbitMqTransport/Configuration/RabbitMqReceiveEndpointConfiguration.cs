@@ -230,7 +230,7 @@ namespace MassTransit.RabbitMqTransport.Configuration
             _endpointConfiguration.Topology.Consume.GetMessageTopology<T>().Bind(callback);
         }
 
-        public void BindDeadLetterQueue(string exchangeName, string queueName, Action<IRabbitMqQueueBindingConfigurator> configure)
+        public void BindDeadLetterQueue(string exchangeName, string queueName, Action<IRabbitMqExchangeQueueBindingConfigurator> configure)
         {
             _endpointConfiguration.Topology.Consume.BindQueue(exchangeName, queueName, configure);
 

@@ -5,19 +5,26 @@ namespace MassTransit.RabbitMqTransport.Configuration
     using RabbitMQ.Client;
 
 
-    public class RabbitMqReceiveSettings :
-        QueueBindingConfigurator,
+    public class RabbitMqReceiveSettings : ExchangeQueueBindingConfigurator,
         ReceiveSettings
     {
         readonly IRabbitMqEndpointConfiguration _configuration;
 
         public RabbitMqReceiveSettings(IRabbitMqEndpointConfiguration configuration, string name, string type, bool durable, bool autoDelete)
-            : base(name, type, durable, autoDelete)
+            : base(name, name, type, durable, autoDelete)
         {
             _configuration = configuration;
-
             ConsumeArguments = new Dictionary<string, object>();
         }
+
+        public string QueueName
+        {
+            get => QueueConfigurator.QueueName;
+            set => QueueConfigurator.QueueName = value;
+        }
+
+        public IDictionary<string, object> QueueArguments => QueueConfigurator.QueueArguments;
+
 
         public int ConsumerPriority
         {
@@ -40,9 +47,6 @@ namespace MassTransit.RabbitMqTransport.Configuration
 
         public string ConsumerTag { get; set; }
 
-        public Uri GetInputAddress(Uri hostAddress)
-        {
-            return GetEndpointAddress(hostAddress);
-        }
+        public virtual Uri GetInputAddress(Uri hostAddress) => ExchangeConfigurator.GetEndpointAddress(hostAddress);
     }
 }

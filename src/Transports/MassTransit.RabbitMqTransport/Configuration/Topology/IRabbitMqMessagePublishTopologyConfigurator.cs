@@ -29,7 +29,7 @@ namespace MassTransit
         /// <param name="exchangeName"></param>
         /// <param name="queueName"></param>
         /// <param name="configure"></param>
-        void BindQueue(string exchangeName, string? queueName, Action<IRabbitMqQueueBindingConfigurator>? configure = null);
+        void BindQueue(string exchangeName, string? queueName, Action<IRabbitMqExchangeQueueBindingConfigurator>? configure = null);
 
         /// <summary>
         /// Bind an alternate exchange/queue for the published message type
@@ -37,6 +37,6 @@ namespace MassTransit
         /// <param name="exchangeName"></param>
         /// <param name="queueName"></param>
         /// <param name="configure"></param>
-        void BindAlternateExchangeQueue(string exchangeName, string? queueName = null, Action<IRabbitMqQueueBindingConfigurator>? configure = null);
+        void BindAlternateExchangeQueue(string exchangeName, string? queueName = null, Action<IRabbitMqExchangeQueueBindingConfigurator>? configure = null);
     }
 }

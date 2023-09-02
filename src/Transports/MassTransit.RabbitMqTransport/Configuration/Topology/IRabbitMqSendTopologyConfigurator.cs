@@ -7,7 +7,7 @@
         ISendTopologyConfigurator,
         IRabbitMqSendTopology
     {
-        Action<IRabbitMqQueueBindingConfigurator> ConfigureErrorSettings { set; }
-        Action<IRabbitMqQueueBindingConfigurator> ConfigureDeadLetterSettings { set; }
+        Action<IRabbitMqExchangeQueueBindingConfigurator> ConfigureErrorSettings { set; }
+        Action<IRabbitMqExchangeQueueBindingConfigurator> ConfigureDeadLetterSettings { set; }
     }
 }

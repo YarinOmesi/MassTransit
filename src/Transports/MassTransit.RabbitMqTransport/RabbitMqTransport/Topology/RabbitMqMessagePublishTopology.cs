@@ -125,7 +125,7 @@ namespace MassTransit.RabbitMqTransport.Topology
             set => _exchange.SetExchangeArgument(Headers.AlternateExchange, value);
         }
 
-        public void BindQueue(string exchangeName, string? queueName, Action<IRabbitMqQueueBindingConfigurator>? configure)
+        public void BindQueue(string exchangeName, string? queueName, Action<IRabbitMqExchangeQueueBindingConfigurator>? configure)
         {
             if (string.IsNullOrWhiteSpace(exchangeName))
                 throw new ArgumentException("Value cannot be null or whitespace.", nameof(exchangeName));
@@ -139,7 +139,7 @@ namespace MassTransit.RabbitMqTransport.Topology
             _specifications.Add(specification);
         }
 
-        public void BindAlternateExchangeQueue(string exchangeName, string? queueName, Action<IRabbitMqQueueBindingConfigurator>? configure)
+        public void BindAlternateExchangeQueue(string exchangeName, string? queueName, Action<IRabbitMqExchangeQueueBindingConfigurator>? configure)
         {
             BindQueue(exchangeName, queueName, configure);
 

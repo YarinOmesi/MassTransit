@@ -7,13 +7,13 @@ namespace MassTransit.RabbitMqTransport.Configuration
 
 
     public class RabbitMqQueueConfigurator :
-        RabbitMqExchangeConfigurator,
         IRabbitMqQueueConfigurator,
         Queue
     {
-        protected RabbitMqQueueConfigurator(string queueName, string exchangeType, bool durable, bool autoDelete)
-            : base(queueName, exchangeType, durable, autoDelete)
+        protected RabbitMqQueueConfigurator(string queueName, bool durable, bool autoDelete)
         {
+            Durable = durable;
+            AutoDelete = autoDelete;
             QueueArguments = new Dictionary<string, object>();
 
             QueueName = queueName;
@@ -75,6 +75,8 @@ namespace MassTransit.RabbitMqTransport.Configuration
             QueueArguments[Headers.XMaxPriority] = (int)maxPriority;
         }
 
+        public bool AutoDelete { get; set; }
+
         public bool Exclusive { get; set; }
 
         public TimeSpan? QueueExpiration
@@ -96,11 +98,9 @@ namespace MassTransit.RabbitMqTransport.Configuration
         }
 
         public string QueueName { get; set; }
-        public IDictionary<string, object> QueueArguments { get; }
 
-        public override RabbitMqEndpointAddress GetEndpointAddress(Uri hostAddress)
-        {
-            return new RabbitMqEndpointAddress(hostAddress, ExchangeName ?? QueueName, ExchangeType, Durable, AutoDelete);
-        }
+        public bool Durable { get; set; }
+
+        public IDictionary<string, object> QueueArguments { get; }
     }
 }

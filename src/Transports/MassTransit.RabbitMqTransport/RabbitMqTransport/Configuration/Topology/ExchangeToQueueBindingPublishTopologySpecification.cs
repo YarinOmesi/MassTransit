@@ -7,15 +7,14 @@ namespace MassTransit.RabbitMqTransport.Configuration
     /// <summary>
     /// Used to declare an exchange and queue, and bind them together.
     /// </summary>
-    public class ExchangeToQueueBindingPublishTopologySpecification :
-        QueueBindingConfigurator,
+    public class ExchangeToQueueBindingPublishTopologySpecification : ExchangeQueueBindingConfigurator,
         IRabbitMqPublishTopologySpecification
     {
         public ExchangeToQueueBindingPublishTopologySpecification(string exchangeName, string exchangeType, string queueName = null, bool durable = true,
             bool autoDelete = false)
-            : base(queueName ?? exchangeName, exchangeType, durable, autoDelete)
+            : base(exchangeName, queueName ?? exchangeName, exchangeType, durable, autoDelete)
+
         {
-            ExchangeName = exchangeName;
         }
 
         public IEnumerable<ValidationResult> Validate()

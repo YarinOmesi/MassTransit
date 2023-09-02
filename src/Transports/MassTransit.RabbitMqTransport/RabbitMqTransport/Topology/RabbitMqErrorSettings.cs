@@ -4,15 +4,12 @@
     using Configuration;
 
 
-    public class RabbitMqErrorSettings :
-        QueueBindingConfigurator,
+    public class RabbitMqErrorSettings : ExchangeQueueBindingConfigurator,
         ErrorSettings
     {
         public RabbitMqErrorSettings(ReceiveSettings source, string name)
-            : base(name, source.ExchangeType, source.Durable, source.AutoDelete)
+            : base(name, name, source.ExchangeType, source.Durable, source.AutoDelete)
         {
-            QueueName = name;
-
             foreach (KeyValuePair<string, object> argument in source.ExchangeArguments)
                 SetExchangeArgument(argument.Key, argument.Value);
 

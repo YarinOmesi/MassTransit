@@ -29,6 +29,6 @@
         /// <param name="exchangeName">The exchange name to bind</param>
         /// <param name="queueName">The queue name to declare/bind to the exchange</param>
         /// <param name="configure">The configuration callback</param>
-        void BindQueue(string exchangeName, string queueName, Action<IRabbitMqQueueBindingConfigurator> configure = null);
+        void BindQueue(string exchangeName, string queueName, Action<IRabbitMqExchangeQueueBindingConfigurator> configure = null);
     }
 }

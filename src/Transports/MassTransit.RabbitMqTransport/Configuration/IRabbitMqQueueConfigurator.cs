@@ -4,10 +4,9 @@
 
 
     /// <summary>
-    /// Configures a queue/exchange pair in RabbitMQ
+    /// Configures a queue in RabbitMQ
     /// </summary>
-    public interface IRabbitMqQueueConfigurator :
-        IRabbitMqExchangeConfigurator
+    public interface IRabbitMqQueueConfigurator
     {
         /// <summary>
         /// Specify that the queue is exclusive to this process and cannot be accessed by other processes

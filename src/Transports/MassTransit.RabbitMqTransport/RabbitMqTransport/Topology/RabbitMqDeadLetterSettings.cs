@@ -4,15 +4,13 @@
     using Configuration;
 
 
-    public class RabbitMqDeadLetterSettings :
-        QueueBindingConfigurator,
+    public class RabbitMqDeadLetterSettings : ExchangeQueueBindingConfigurator,
         DeadLetterSettings
     {
-        public RabbitMqDeadLetterSettings(ReceiveSettings source, string name)
-            : base(name, source.ExchangeType, source.Durable, source.AutoDelete)
-        {
-            QueueName = name;
 
+        public RabbitMqDeadLetterSettings(ReceiveSettings source, string name)
+            : base(name, name, source.ExchangeType, source.Durable, source.AutoDelete)
+        {
             foreach (KeyValuePair<string, object> argument in source.ExchangeArguments)
                 SetExchangeArgument(argument.Key, argument.Value);
 

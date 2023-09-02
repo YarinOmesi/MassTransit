@@ -17,8 +17,8 @@
         public IExchangeTypeSelector ExchangeTypeSelector { get; }
         public IEntityNameValidator EntityNameValidator { get; }
 
-        public Action<IRabbitMqQueueBindingConfigurator> ConfigureErrorSettings { get; set; }
-        public Action<IRabbitMqQueueBindingConfigurator> ConfigureDeadLetterSettings { get; set; }
+        public Action<IRabbitMqExchangeQueueBindingConfigurator> ConfigureErrorSettings { get; set; }
+        public Action<IRabbitMqExchangeQueueBindingConfigurator> ConfigureDeadLetterSettings { get; set; }
 
         IRabbitMqMessageSendTopologyConfigurator<T> IRabbitMqSendTopology.GetMessageTopology<T>()
         {

@@ -7,15 +7,13 @@ namespace MassTransit.RabbitMqTransport.Configuration
     /// <summary>
     /// Used to bind an exchange to the consuming queue's exchange
     /// </summary>
-    public class ExchangeToQueueBindingConsumeTopologySpecification :
-        QueueBindingConfigurator,
+    public class ExchangeToQueueBindingConsumeTopologySpecification : ExchangeQueueBindingConfigurator,
         IRabbitMqConsumeTopologySpecification
     {
         public ExchangeToQueueBindingConsumeTopologySpecification(string exchangeName, string exchangeType, string queueName = null, bool durable = true,
             bool autoDelete = false)
-            : base(queueName ?? exchangeName, exchangeType, durable, autoDelete)
+            : base(exchangeName, queueName ?? exchangeName, exchangeType, durable, autoDelete)
         {
-            ExchangeName = exchangeName;
         }
 
         public IEnumerable<ValidationResult> Validate()

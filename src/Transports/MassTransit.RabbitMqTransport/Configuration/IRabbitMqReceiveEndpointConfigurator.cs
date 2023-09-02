@@ -9,7 +9,8 @@
     /// </summary>
     public interface IRabbitMqReceiveEndpointConfigurator :
         IReceiveEndpointConfigurator,
-        IRabbitMqQueueEndpointConfigurator
+        IRabbitMqQueueEndpointConfigurator,
+        IRabbitMqExchangeConfigurator
     {
         /// <summary>
         /// If false, deploys only exchange, without queue
@@ -41,7 +42,7 @@
         /// <param name="exchangeName"></param>
         /// <param name="queueName"></param>
         /// <param name="configure"></param>
-        void BindDeadLetterQueue(string exchangeName, string queueName = null, Action<IRabbitMqQueueBindingConfigurator> configure = null);
+        void BindDeadLetterQueue(string exchangeName, string queueName = null, Action<IRabbitMqExchangeQueueBindingConfigurator> configure = null);
 
         /// <summary>
         /// Add middleware to the model pipe

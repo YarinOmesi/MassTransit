@@ -66,7 +66,7 @@ namespace MassTransit.RabbitMqTransport.Topology
             _specifications.Add(specification);
         }
 
-        public void BindQueue(string exchangeName, string queueName, Action<IRabbitMqQueueBindingConfigurator> configure = null)
+        public void BindQueue(string exchangeName, string queueName, Action<IRabbitMqExchangeQueueBindingConfigurator> configure = null)
         {
             if (string.IsNullOrWhiteSpace(exchangeName))
                 throw new ArgumentException("Value cannot be null or whitespace.", nameof(exchangeName));
