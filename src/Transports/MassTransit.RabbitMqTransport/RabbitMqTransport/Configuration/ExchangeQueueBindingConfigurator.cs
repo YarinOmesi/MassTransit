@@ -42,7 +42,11 @@
             QueueConfigurator.QueueExpiration = duration;
         }
 
-        public string QueueName => QueueConfigurator.QueueName;
+        public string QueueName
+        {
+            get => QueueConfigurator.QueueName;
+            set => QueueConfigurator.QueueName = value;
+        }
 
         public IDictionary<string, object> QueueArguments => QueueConfigurator.QueueArguments;
 

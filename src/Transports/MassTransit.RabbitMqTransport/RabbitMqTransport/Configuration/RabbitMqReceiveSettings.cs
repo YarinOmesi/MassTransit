@@ -17,15 +17,6 @@ namespace MassTransit.RabbitMqTransport.Configuration
             ConsumeArguments = new Dictionary<string, object>();
         }
 
-        public string QueueName
-        {
-            get => QueueConfigurator.QueueName;
-            set => QueueConfigurator.QueueName = value;
-        }
-
-        public IDictionary<string, object> QueueArguments => QueueConfigurator.QueueArguments;
-
-
         public int ConsumerPriority
         {
             set => ConsumeArguments[Headers.XPriority] = value;
